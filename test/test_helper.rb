@@ -10,6 +10,10 @@ require 'active_record'
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
 # ActiveRecord::Base.logger = Logger.new(STDOUT)
 
+# require '../skyway/db/schema.rb'
+#
+# OR
+
 ActiveRecord::Schema.define do
   create_table :venue, force: true do |t|
   end
@@ -48,6 +52,7 @@ class Show < ActiveRecord::Base
   belongs_to :venue
   has_many :setlists
   serialize :notes, Array
+  attr_accessor :raw_setlist
 end
 
 class Setlist < ActiveRecord::Base
